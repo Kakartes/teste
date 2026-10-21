@@ -5,7 +5,7 @@
     require_once("modelo.php/Trabalho.php");
     require_once("modelo.php/Instrumento.php");
 
-        $istrumentos = [];
+        $instrumentos = [];
 
         $soma = 0;
 
@@ -24,14 +24,13 @@
                 } elseif ($tipo == 3) {
                 $instrumento = new Participacao(readline("Informe a nota: "));}
         
-                array_push($istrumentos, $instrumento);
+                array_push($instrumentos, $instrumento);
 } 
 
-        //soma
-            $instrumentos[] = $instrumento;{
-            $soma += $this->getNotaFinal();
+        foreach ($instrumentos as $instrumento) {
+            $soma += $instrumento->getNotaFinal();
 
-            echo "Nota final do instrumento $soma: " . $instrumento->getNotaFinal() . "\n";
+            echo "Nota final do instrumento: " . $instrumento->getNotaFinal() . "\n";
         }
 
 $media = count($instrumentos) > 0 ? $soma / count($instrumentos) : 0;
