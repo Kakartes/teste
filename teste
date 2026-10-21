@@ -1,0 +1,29 @@
+instrumentos = [];
+$soma = 0;
+
+for ($i = 1; $i <= 3; $i++) {
+    echo "Instrumento {$i}\n";
+    echo "Tipo (Prova, Trabalho ou Participacao): ";
+    $tipo = trim(fgets(STDIN));
+
+    echo "Nota: ";
+    $nota = trim(fgets(STDIN));
+
+    if ($tipo == "Prova") {
+        $obj = new Prova((float) $nota);
+    } elseif ($tipo == "Trabalho") {
+        $obj = new Trabalho((float) $nota);
+    } else {
+        $obj = new Participacao((float) $nota);
+    }
+
+    $instrumentos[] = $obj;
+    $soma += $obj->getNotaFinal();
+}
+
+foreach ($instrumentos as $i => $instrumento) {
+    echo "Nota final do instrumento " . ($i + 1) . ": " . $instrumento->getNotaFinal() . "\n";
+}
+
+$media = $soma / count($instrumentos);
+echo "Média final: " . $media . "\n";
